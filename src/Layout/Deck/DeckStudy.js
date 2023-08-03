@@ -4,6 +4,8 @@ import { readDeck } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import {useHistory, Link } from "react-router-dom";
 
+import Card from "../Card/Card";
+
 function DeckStudy() {
 const { deckId } = useParams();
 const [deck, setDeck] = useState([]);
