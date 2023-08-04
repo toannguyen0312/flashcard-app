@@ -34,9 +34,18 @@ useEffect (() => {
 
 return (
     <div>
-        <nav>
-            <Link to="/">Home</Link> / {deck.name} / Study
+        <nav arial-label="breadcrumb">
+            <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                    <Link to="/">Home</Link>
+                </li>
+                <li className="breadcrumb-item">
+                    <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+                </li>
+                <li className="breadcrumb-item active" arial-current="page">Study</li>
+            </ol>
         </nav>
+        <h2>Study: {deck.name}</h2>
     </div>
 )
 }
