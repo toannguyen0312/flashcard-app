@@ -13,6 +13,7 @@ const [cards, setCards] = useState([]);
 const [card, setCard] = useState(1);
 const [flipped, setFlipped] = useState(false);
 const [numberOfCard, setNumberOfCard] = useState(0);
+const [cardNum, setCardNum] = useState(1);
 
 const history = useHistory();
 
@@ -32,6 +33,10 @@ useEffect (() => {
     loadDeck();
 }, [deckId]);
 
+const flippedHandler = () => {
+    setFlipped(!flipped);
+}
+
 return (
     <div>
         <nav arial-label="breadcrumb">
@@ -46,6 +51,7 @@ return (
             </ol>
         </nav>
         <h2>Study: {deck.name}</h2>
+        <Card  card={card} numberOfCard={numberOfCard} cardNum={cardNum} flippedHandler={flippedHandler}/>
     </div>
 )
 }
