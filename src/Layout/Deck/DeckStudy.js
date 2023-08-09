@@ -51,7 +51,17 @@ return (
             </ol>
         </nav>
         <h2>Study: {deck.name}</h2>
-        <Card  card={card} numberOfCard={numberOfCard} cardNum={cardNum} flippedHandler={flippedHandler}/>
+        <div>
+            {numberOfCard <= 2? (
+                <div>
+                    <h5>Not enough cards.</h5>
+                    <p>You need at least 3 cards to study. There are {numberOfCard} cards in this deck</p>
+                    <button type="button" className="btn btn-secondary" onClick={() => history.push(`/decks/${deck.id}/cards/new`)}>Add Cards</button>
+                </div>
+            ): (
+                <Card  card={card} numberOfCard={numberOfCard} cardNum={cardNum} flippedHandler={flippedHandler}/>
+            )}
+        </div>
     </div>
 )
 }
