@@ -7,6 +7,9 @@ import Home from "./Home/home";
 import DeckStudy from "./Deck/DeckStudy";
 import CreateDeck from "./Deck/CreateDeck";
 import DeckScreen from "./Deck/DeckScreen";
+import EditDeck from "./Deck/EditDeck";
+import AddCards from "./Card/AddCard";
+import EditCard from "./Card/EditCard";
 
 function Layout() {
   return (
@@ -15,7 +18,7 @@ function Layout() {
       <div className="container">
         {/* TODO: Implement the screen starting here */}
         <Switch>
-          <Route exact={true} path="/">
+          <Route exact path="/">
             <Home />
           </Route>
           <Route path="/decks/:deckId/study">
@@ -24,8 +27,17 @@ function Layout() {
           <Route path="/decks/new">
             <CreateDeck />
           </Route>
-          <Route path="decks/:deckId">
+          <Route exact path="/decks/:deckId">
             <DeckScreen />
+          </Route>
+          <Route path="/decks/:deckId/edit">
+            <EditDeck />
+          </Route>
+          <Route path="/decks/:deckId/cards/:cardId/edit">
+            <EditCard />
+          </Route>
+          <Route exact path="/decks/:deckId/cards/new">
+            <AddCards />
           </Route>
           <Route>
             <NotFound />
