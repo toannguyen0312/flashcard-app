@@ -10,7 +10,7 @@ function DeckStudy() {
 const { deckId } = useParams();
 const [deck, setDeck] = useState([]);
 const [cards, setCards] = useState([]);
-const [card, setCard] = useState(1);
+const [card, setCard] = useState(0);
 const [flipped, setFlipped] = useState(false);
 const [numberOfCard, setNumberOfCard] = useState(0);
 const [cardNum, setCardNum] = useState(1);
@@ -37,6 +37,22 @@ const flippedHandler = () => {
     setFlipped(!flipped);
 }
 
+const nextHandler = () => {
+    setFlipped(!flipped);
+    if(cardNum !== numberOfCard) {
+        setCardNum(cardNum + 1);
+        setCard(cards[cardNum]);
+    } else {
+        const restartDeck = window.confirm("Restart cards? \n Click 'cancel to return to the home page");
+        if(!restartDeck) {
+            history.push("/");
+        } else {
+            setCardNum(1);
+            setCard(cards[0]);
+        }
+    }
+}
+
 return (
     <div>
         <nav arial-label="breadcrumb">
@@ -59,7 +75,7 @@ return (
                     <button type="button" className="btn btn-secondary" onClick={() => history.push(`/decks/${deck.id}/cards/new`)}>Add Cards</button>
                 </div>
             ): (
-                <Card  card={card} numberOfCard={numberOfCard} cardNum={cardNum} flippedHandler={flippedHandler}/>
+                <Card  card={card} numberOfCard={numberOfCard} cardNum={cardNum} flipped={flipped} flippedHandler={flippedHandler} nextHandler={nextHandler}/>
             )}
         </div>
     </div>
