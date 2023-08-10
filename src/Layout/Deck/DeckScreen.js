@@ -6,6 +6,13 @@ import { useEffect } from "react";
 function DeckScreen () {
 const { deckId } = useParams();
 
+useEffect (() => {
+    async funtion loadDeck() {
+        try {
+            const response = await readDeck(deckId);
+        }
+    }
+})
 return (
     <div>
         <nav arial-label="breadcrumb">
