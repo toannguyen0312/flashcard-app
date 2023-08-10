@@ -11,7 +11,7 @@ const [deck, setDeck] = useState([]);
 const [cards, setCards] = useState([]);
 const {url} = useRouteMatch();
 
-useEffect (() => {
+useEffect(() => {
     const abortController = new AbortController();
     async function fetchDeck() {
         const fetchedDeck = await readDeck(deckId, abortController.signal);
@@ -23,7 +23,7 @@ useEffect (() => {
 }, [deckId]);
 
 
-const deleteHandler = async() => {
+const deleteHandler = async () => {
     const deleteConfirm = window.confirm("Delete this deck? \n You will not be able to recover it.");
     if (deleteConfirm) {
         await deleteDeck(deckId);
@@ -32,14 +32,7 @@ const deleteHandler = async() => {
 
 return (
     <div>
-        <nav arial-label="breadcrumb">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                    <Link to="/">Home</Link>
-                </li>
-                <li className="breadcrumb-item active" arial-current="page">React Router</li>
-            </ol>
-        </nav>
+       <nav><Link to="/">Home</Link> / {deck.name} </nav>
         <div>
             <h5>{deck.name}</h5>
             <p>{deck.description}</p>

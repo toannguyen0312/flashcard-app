@@ -14,7 +14,7 @@ export default function EditDeck() {
             } catch (error) {
                 console.error(error);
             }
-        } fetchDeck()
+        } fetchDeck();
 
     },[deckId])
 

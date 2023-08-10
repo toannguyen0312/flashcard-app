@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { readDeck } from "../../utils/api";
 import { useParams } from "react-router-dom";
-import {useHistory, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import Card from "../Card/Card";
 
@@ -18,7 +18,7 @@ const [cardNum, setCardNum] = useState(1);
 const history = useHistory();
 
 
-useEffect (() => {
+useEffect(() => {
     async function loadDeck() {
         try {
             const response = await readDeck( deckId );
