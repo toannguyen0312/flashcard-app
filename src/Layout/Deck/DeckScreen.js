@@ -1,50 +1,41 @@
 import React from "react";
-import { readDeck } from "../../utils/api";
-import { Link, useParams, useRouteMatch } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { deleteDeck } from "../../utils/api";
-import CardList from "../Card/CardList";
+import { useState, useEffect } from "react";
+import { readDeck, readCard } from "../../utils/api";
+import { useParams, Link } from "react-router-dom";
+import CardScreen from "../Card/CardScreen";
 
 function DeckScreen() {
 const { deckId } = useParams();
 const [deck, setDeck] = useState([]);
-const [cards, setCards] = useState([]);
-const {url} = useRouteMatch();
+const [cards, setCards] = useState([]); 
 
 useEffect(() => {
-    const abortController = new AbortController();
-    async function fetchDeck() {
-        const fetchedDeck = await readDeck(deckId, abortController.signal);
-        setDeck(fetchedDeck);
-        setCards(fetchedDeck.cards)
+    async function loadDeck() {
+        const response = await readDeck(deckId);
+        setDeck(response);
+        setCards(response.cards);
     }
-    fetchDeck();
-    return() => abortController.abort();
-}, [deckId]);
-
-
-const deleteHandler = async () => {
-    const deleteConfirm = window.confirm("Delete this deck? \n You will not be able to recover it.");
-    if (deleteConfirm) {
-        await deleteDeck(deckId);
-    }
-}
+    loadDeck()
+},[deckId]);
 
 return (
     <div>
-       <nav><Link to="/">Home</Link> / {deck.name} </nav>
-        <div>
-            <h5>{deck.name}</h5>
-            <p>{deck.description}</p>
-            <Link to={`${url}/edit`}><button>Edit</button></Link>
-            <Link to={`${url}/study`}><button>Study</button></Link>
-            <Link to={`${url}/cards/new`}><button>Add Cards</button></Link>
-            <button onClick={deleteHandler}>Delete</button>
-        </div>
-        <div>
-            <h2>Cards</h2>
-            <CardList cards={cards} />
-        </div>        
+        <nav arial-label="bread-crumb">
+            <ol className="breadcrumb">
+                <li className="breadcrumb-item">
+                    <Link to="/">Home</Link>
+                </li>
+                <li className="breadcrumb-item active" arial-current="page">{deck.name}</li>
+            </ol>
+        </nav>
+        <h5>{deck.name}</h5>
+        <p>{deck.description}</p>
+        <button type="button" className="btn btn-secondary">Edit</button>
+        <button type="button" className="btn btn-primary">Study</button>
+        <button type="button" className="btn btn-primary">Add Cards</button>
+        <button type="button" className="btn btn-danger">Delete</button>
+        <h3>Cards </h3>
+        <CardScreen cards={cards}/>
     </div>
 )
 }

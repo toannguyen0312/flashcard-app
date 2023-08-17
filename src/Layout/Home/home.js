@@ -7,16 +7,12 @@ import DeckList from "../Deck/DeckList";
 
 function Home() {
 const history = useHistory();
-const [deck, setDeck]  = useState([])
+const [deck, setDeck]  = useState([]);
 
 useEffect(() => {
     async function fetchDecks(){
-        try {
         const response = await listDecks();
         setDeck(response);
-        } catch (error) {
-            console.error(error);
-        }
     }
     fetchDecks();
 }, [])

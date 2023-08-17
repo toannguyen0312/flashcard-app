@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import { BrowserRouter as Route, Switch }  from "react-router-dom";
+import { Route, Switch }  from "react-router-dom";
 
 import Home from "./Home/home";
 import DeckStudy from "./Deck/DeckStudy";
@@ -42,8 +42,7 @@ function Layout() {
           <Route>
             <NotFound />
           </Route>
-        </Switch>
-        
+        </Switch>        
       </div>
     </>
   );
