@@ -45,7 +45,7 @@ return (
                     type="text" 
                     id="name"
                     name="name" 
-                    placeholder="Deck Name"
+                    //placeholder="Deck Name"
                     value={formData.name}
                     onChange={handleChange}
                 />

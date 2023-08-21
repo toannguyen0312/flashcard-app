@@ -9,6 +9,18 @@ const { deckId } = useParams();
 const { cardId } = useParams();
 const [deck, setDeck] = useState([]);
 
+const handleChange = ({ target }) => {
+    setCard({
+        ...card,
+        [target.name]: target.value,
+    })
+}
+
+const handleSubmit = async (event) => {
+    event.preventDefault();
+    await updateCard(card);
+}
+
 useEffect(() => {
     async function loadDeck() {
         const fetchDeck = await readDeck(deckId);
@@ -23,18 +35,6 @@ useEffect(() => {
     loadCard();
 }, [deckId, cardId]);
 
-const handleChange = ({ target }) => {
-    setCard({
-        ...card,
-        [target.name]: target.value,
-    })
-}
-
-const handleSubmit = async (event) => {
-    event.preventDefault();
-    await updateCard(card);
-}
-
 return (
     <div>
         <nav aria-label="bread-crumb">
@@ -48,6 +48,35 @@ return (
                 <li className="breadcrumb-item active" aria-current="page"> Edit Card {card.id}</li>
             </ol>
         </nav>
+        <h2>{deck.name}: Add Card</h2>
+        <form>
+            <label htmlFor="frontcard">
+                Front
+                <br />
+                <textarea
+                    className="form-control"
+                    id="frontcard"
+                    name="frontcard"
+                    placeholder="Front side of card"
+                    onChange={handleChange}
+                    value={card.front}
+                />
+            </label>
+            <br />
+            <label htmlFor="backcard">
+                Back
+                <br />
+                <textarea
+                    className="form-control"
+                    id="backcard"
+                    name="backcard"
+                    placeholder="Back side of card"
+                    value={card.back}
+                    onChange={handleChange}
+                />
+            </label>
+        </form>
+        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Save</button>
     </div>
 )
 
