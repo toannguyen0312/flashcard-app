@@ -8,6 +8,16 @@ const [deck, setDeck] = useState({name:"", description:""});
 const { deckId } = useParams();
 const history = useHistory();
 
+useEffect (() => {
+    async function loadDeck() {
+        try {
+            const response = await readDeck(deckId);
+            setDeck(response);}  catch (error) {
+            console.error(error);
+        }
+    }
+    loadDeck();
+}, [deckId]);
 
 const handleChange = ({ target }) => {
     setDeck({
@@ -19,14 +29,6 @@ const handleSubmit = async (event) => {
     event.preventDefault();
     await updateDeck(deck);
 }
-
-useEffect (() => {
-    async function loadDeck() {
-        const response = await readDeck(deckId);
-        setDeck(response);
-    }
-    loadDeck();
-}, [deckId]);
 
 return (
 <div>
@@ -49,10 +51,9 @@ return (
             <input
                 type="text"
                 id="name"
-                name="name"
-                placeholder={deck.name}
-                value={deck.name}
+                name="name"                
                 onChange={handleChange}
+                value={deck.name}
             />
         </label>
         <br />

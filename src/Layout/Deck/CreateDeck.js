@@ -16,7 +16,7 @@ const [formData, setFormData] = useState({...initialFormState})
 const handleChange = ({ target }) => {
     setFormData({
         ...formData,
-        [target.value]: target.value,
+        [target.name]: target.value,
     });
 };
 
@@ -45,7 +45,7 @@ return (
                     type="text" 
                     id="name"
                     name="name" 
-                    //placeholder="Deck Name"
+                    placeholder="Deck Name"
                     value={formData.name}
                     onChange={handleChange}
                 />
