@@ -28,7 +28,7 @@ const handleDelete = async(deckId) =>{
 
 return (
     <div>
-        <nav arial-label="bread-crumb">
+        <nav arial-label="bread-crumb" className="shadow">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                     <Link to="/">Home</Link>
@@ -38,10 +38,16 @@ return (
         </nav>
         <h5>{deck.name}</h5>
         <p>{deck.description}</p>
-        <Link to={`/decks/${deckId}/edit`}><button type="button" className="btn btn-secondary">Edit</button></Link>
-        <Link to={`/decks/${deckId}/study`}><button type="button" className="btn btn-primary">Study</button></Link>
-        <Link to={`/decks/${deckId}/cards/new`}><button type="button" className="btn btn-primary">Add Cards</button></Link>
-        <button type="button" className="btn btn-danger">Delete</button>
+        <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+            <div>
+                <Link to={`/decks/${deckId}/edit`}><button type="button" className="btn btn-secondary shadow">Edit</button></Link>
+                <Link to={`/decks/${deckId}/study`}><button type="button" className="btn btn-primary shadow" style={{marginLeft:"7px"}}>Study</button></Link>
+                <Link to={`/decks/${deckId}/cards/new`}><button type="button" className="btn btn-primary shadow" style={{marginLeft:"7px"}}>Add Cards</button></Link>
+            </div>
+            <div>
+                <button type="button" className="btn btn-danger shadow">Delete</button>
+            </div>
+        </div>
         <h3>Cards </h3>
         <CardScreen cards={cards}/>
     </div>

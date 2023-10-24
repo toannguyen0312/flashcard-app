@@ -32,7 +32,7 @@ const handleSubmit = async (event) => {
 
 return (
 <div>
-    <nav arial-label="bread-crumb">
+    <nav arial-label="bread-crumb" className="shadow">
         <ol className="breadcrumb">
             <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
@@ -45,32 +45,36 @@ return (
     </nav>
     <h1>Edit Deck</h1>
     <form>
-        <label htmlFor="name">
-            Name
+        <div className="form-group">
+            <label htmlFor="name">
+                Name
+                <br />
+                <input
+                    type="text"
+                    id="name"
+                    name="name"                
+                    onChange={handleChange}
+                    value={deck.name}
+                    className="form-control shadow"
+                />
+            </label>
             <br />
-            <input
-                type="text"
-                id="name"
-                name="name"                
-                onChange={handleChange}
-                value={deck.name}
-            />
-        </label>
-        <br />
-        <label htmlFor="description">
-            Description
-            <br />
-            <textarea
-                id="description"
-                name="description"
-                placeholder={deck.description}
-                value={deck.description}
-                onChange={handleChange}
-            />
-        </label>
+            <label htmlFor="description">
+                Description
+                <br />
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder={deck.description}
+                    value={deck.description}
+                    onChange={handleChange}
+                    className="form-control shadow"
+                />
+            </label>
+        </div>
     </form>
-    <button type="button" className="btn btn-secondary" onClick={() => history.push("/")}>Cancel</button>
-    <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+    <button type="button" className="btn btn-secondary shadow" onClick={() => history.push("/")}>Cancel</button>
+    <button type="button" className="btn btn-primary shadow" onClick={handleSubmit} style={{marginLeft:"7px"}}>Submit</button>
 </div>
 )
 }

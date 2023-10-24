@@ -14,14 +14,20 @@ const handleDelete = async(deckId) =>{
 }
 
 return (
-<div className="card">
+<div className="card shadow p-3 bg-white rounded" style={{marginBottom:"10px"}} >
     <div className="card-body">
         <h5 className="card-title">{deck.name}</h5>
         <p className="card-subtitle mb-2 text-muted">{deck.cards.length} cards</p>
         <p className="card-text">{deck.description}</p>
-        <Link to={`/decks/${deck.id}`}><button type="button" className="btn btn-secondary">View</button></Link>
-        <Link to={`/decks/${deck.id}/study`}><button type="button" className="btn btn-primary">Study</button></Link>
-        <button type="button" className="btn btn-danger" onClick={() => handleDelete(deck.id)}>Delete</button>
+        <div style={{display:"flex", flexDirection: "row", justifyContent:"space-between"}}>
+            <div>
+                <Link to={`/decks/${deck.id}`}><button type="button" className="btn btn-secondary shadow">View</button></Link>
+                <Link to={`/decks/${deck.id}/study`}><button type="button" className="btn btn-primary shadow" style={{marginLeft:"7px"}}>Study</button></Link>
+            </div>
+            <div>
+                <button type="button" className="btn btn-danger shadow" onClick={() => handleDelete(deck.id)}>Delete</button>
+            </div>
+        </div>
     </div>
 </div>
 );

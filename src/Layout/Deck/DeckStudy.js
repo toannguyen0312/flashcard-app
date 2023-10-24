@@ -55,7 +55,7 @@ const nextHandler = () => {
 
 return (
     <div>
-        <nav arial-label="breadcrumb">
+        <nav arial-label="breadcrumb" className="shadow">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                     <Link to="/">Home</Link>
@@ -72,7 +72,7 @@ return (
                 <div>
                     <h5>Not enough cards.</h5>
                     <p>You need at least 3 cards to study. There are {numberOfCard} cards in this deck</p>
-                    <button type="button" className="btn btn-secondary" onClick={() => history.push(`/decks/${deck.id}/cards/new`)}>Add Cards</button>
+                    <button type="button" className="btn btn-primary" onClick={() => history.push(`/decks/${deck.id}/cards/new`)}>Add Cards</button>
                 </div>
             ): (
                 <Card  card={card} numberOfCard={numberOfCard} cardNum={cardNum} flipped={flipped} flippedHandler={flippedHandler} nextHandler={nextHandler}/>

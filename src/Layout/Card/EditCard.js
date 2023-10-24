@@ -37,7 +37,7 @@ useEffect(() => {
 
 return (
     <div>
-        <nav aria-label="bread-crumb">
+        <nav aria-label="bread-crumb" className="shadow">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                     <Link to="/">Home</Link>
@@ -50,33 +50,35 @@ return (
         </nav>
         <h2>{deck.name}: Add Card</h2>
         <form>
-            <label htmlFor="frontcard">
-                Front
+            <div className="form-group">
+                <label htmlFor="frontcard">
+                    Front
+                    <br />
+                    <textarea
+                        className="form-control shadow"
+                        id="frontcard"
+                        name="frontcard"
+                        placeholder="Front side of card"
+                        onChange={handleChange}
+                        value={card.front}                        
+                    />
+                </label>
                 <br />
-                <textarea
-                    className="form-control"
-                    id="frontcard"
-                    name="frontcard"
-                    placeholder="Front side of card"
-                    onChange={handleChange}
-                    value={card.front}
-                />
-            </label>
-            <br />
-            <label htmlFor="backcard">
-                Back
-                <br />
-                <textarea
-                    className="form-control"
-                    id="backcard"
-                    name="backcard"
-                    placeholder="Back side of card"
-                    value={card.back}
-                    onChange={handleChange}
-                />
-            </label>
+                <label htmlFor="backcard">
+                    Back
+                    <br />
+                    <textarea
+                        className="form-control shadow"
+                        id="backcard"
+                        name="backcard"
+                        placeholder="Back side of card"
+                        value={card.back}
+                        onChange={handleChange}
+                    />
+                </label>
+            </div>
         </form>
-        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Save</button>
+        <button type="button" className="btn btn-primary shadow" onClick={handleSubmit}>Save</button>
     </div>
 )
 
